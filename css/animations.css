@@ -1,0 +1,8 @@
+@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(1deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pulse{50%{transform:translateX(-50%) scale(1.14)}}
+.fade-up{animation:fadeUp .45s ease both}
+.shake{animation:shake .25s linear 2}@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.confetti-layer{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}
+.confetti-piece{position:absolute;top:-20px;width:9px;height:16px;background:#ffb766;animation:fall 1.4s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.5}}

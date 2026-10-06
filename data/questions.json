@@ -1,0 +1,169 @@
+[
+  {
+    "id": "q1",
+    "category": "concept",
+    "type": "mc",
+    "prompt": "Manakah yang merupakan bilangan rasional?",
+    "options": [
+      "0,5",
+      "Semua pilihan selain ini",
+      "Tidak ada"
+    ],
+    "answer": "0,5",
+    "hint": "Desimal berhingga dapat ditulis sebagai pecahan."
+  },
+  {
+    "id": "q2",
+    "category": "concept",
+    "type": "mc",
+    "prompt": "Bilangan 3 dapat ditulis sebagai pecahan...",
+    "options": [
+      "3/1",
+      "1/3",
+      "3/0"
+    ],
+    "answer": "3/1",
+    "hint": "Penyebut tidak boleh nol."
+  },
+  {
+    "id": "q3",
+    "category": "conversion",
+    "type": "mc",
+    "fraction": {
+      "n": 1,
+      "d": 4
+    },
+    "prompt": "Bentuk desimal dari pecahan ini adalah...",
+    "options": [
+      "0,25",
+      "0,4",
+      "0,75"
+    ],
+    "answer": "0,25",
+    "hint": "Satu per empat sama dengan dua puluh lima perseratus."
+  },
+  {
+    "id": "q4",
+    "category": "conversion",
+    "type": "mc",
+    "prompt": "0,6 sama dengan pecahan paling sederhana...",
+    "options": [
+      "3/5",
+      "6/5",
+      "1/6"
+    ],
+    "answer": "3/5",
+    "hint": "Mulai dari 6/10 lalu sederhanakan."
+  },
+  {
+    "id": "q5",
+    "category": "numberLine",
+    "type": "mc",
+    "fraction": {
+      "n": 7,
+      "d": 4
+    },
+    "prompt": "Pecahan ini berada di antara...",
+    "options": [
+      "0 dan 1",
+      "1 dan 2",
+      "2 dan 3"
+    ],
+    "answer": "1 dan 2",
+    "hint": "7 ÷ 4 = 1,75."
+  },
+  {
+    "id": "q6",
+    "category": "numberLine",
+    "type": "mc",
+    "prompt": "−1,5 berada di antara...",
+    "options": [
+      "−2 dan −1",
+      "−1 dan 0",
+      "0 dan 1"
+    ],
+    "answer": "−2 dan −1",
+    "hint": "Perhatikan posisi di sebelah kiri nol."
+  },
+  {
+    "id": "q7",
+    "category": "comparison",
+    "type": "mc",
+    "prompt": "Pilih pernyataan yang benar.",
+    "options": [
+      "0,5 < 0,25",
+      "0,5 = 1/2",
+      "0,75 < 1/2"
+    ],
+    "answer": "0,5 = 1/2",
+    "hint": "Ubah pecahan ke desimal."
+  },
+  {
+    "id": "q8",
+    "category": "comparison",
+    "type": "mc",
+    "prompt": "Mana yang lebih besar?",
+    "options": [
+      "−0,7",
+      "−0,4"
+    ],
+    "answer": "−0,4",
+    "hint": "Bilangan yang lebih kanan di garis bilangan lebih besar."
+  },
+  {
+    "id": "q9",
+    "category": "comparison",
+    "type": "mc",
+    "prompt": "Urutan benar dari kecil ke besar adalah...",
+    "options": [
+      "0,25; 0,5; 0,75",
+      "0,75; 0,5; 0,25",
+      "0,5; 0,25; 0,75"
+    ],
+    "answer": "0,25; 0,5; 0,75",
+    "hint": "Bandingkan nilai desimal."
+  },
+  {
+    "id": "q10",
+    "category": "conversion",
+    "type": "mc",
+    "prompt": "0,25 sama dengan pecahan paling sederhana...",
+    "options": [
+      "1/4",
+      "1/2",
+      "2/5"
+    ],
+    "answer": "1/4",
+    "hint": "0,25 = 25/100."
+  },
+  {
+    "id": "q11",
+    "category": "numberLine",
+    "type": "mc",
+    "fraction": {
+      "n": 3,
+      "d": 2
+    },
+    "prompt": "Pecahan ini berada di antara...",
+    "options": [
+      "0 dan 1",
+      "1 dan 2",
+      "2 dan 3"
+    ],
+    "answer": "1 dan 2",
+    "hint": "3 ÷ 2 = 1,5."
+  },
+  {
+    "id": "q12",
+    "category": "comparison",
+    "type": "mc",
+    "prompt": "Bandingkan 3/4 dan 0,8.",
+    "options": [
+      "3/4 < 0,8",
+      "3/4 > 0,8",
+      "3/4 = 0,8"
+    ],
+    "answer": "3/4 < 0,8",
+    "hint": "3/4 = 0,75."
+  }
+]
