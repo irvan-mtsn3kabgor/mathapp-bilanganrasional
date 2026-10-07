@@ -1,5 +1,5 @@
 import { loadState,saveState,resetState } from "./storage.js";
-import { pushProgress,pullProgress } from "./api.js";
+import { pushProgress,pullProgress,testConnection } from "./api.js";
 import { totalProgress,unlocked,completeModule,addXP } from "./progress.js";
 import { moduleInfo,conceptView,conversionView,numberLineView,comparisonView } from "./lessons.js";
 import { loadQuestions,createQuiz,renderQuestion } from "./quiz.js";
@@ -74,7 +74,7 @@ function progressView(){
  <div class="grid grid-2" style="margin-top:16px"><div class="card"><h2>⭐ ${state.xp} XP</h2><p>Nilai terbaik: <b>${state.quiz.bestScore||0}/100</b></p><p>Upaya evaluasi: ${state.quiz.attempts||0}</p></div>
  <div class="card"><h2>Badge</h2>${state.badges.length?state.badges.map(b=>`<div class="badge"><span class="badge-icon">🏅</span><b>${b}</b></div>`).join(""):"<p>Belum ada badge. Selesaikan misi pertama.</p>"}</div></div>
  <div class="card" style="margin-top:16px"><h2>Sinkronisasi</h2><p data-sync>${state.sync.pending?"Menunggu sinkronisasi":"Tersimpan"}</p><p class="small">Terakhir sinkron: ${state.sync.lastSyncedAt?new Date(state.sync.lastSyncedAt).toLocaleString("id-ID"):"Belum pernah"}</p>
- <div class="actions"><button id="syncNow" class="btn btn-secondary">Sinkronkan Sekarang</button><button id="resetProgress" class="btn btn-secondary">Reset Progress</button></div></div></section>`;
+ <div class="actions"><button id="testConnection" class="btn btn-secondary">Tes Koneksi Apps Script</button><button id="syncNow" class="btn btn-secondary">Sinkronkan Sekarang</button><button id="resetProgress" class="btn btn-secondary">Reset Progress</button></div><div id="connectionResult" class="feedback"></div></div></section>`;
 }
 function quizHome(){
  const ready=Object.values(state.modules).every(x=>x>=100);
@@ -107,7 +107,8 @@ function bind(){
    persist(); const cloud=await pullProgress(state.student.id); if(cloud) Object.assign(state,cloud); render();
  };
  bindConcept();bindConversion();bindMiniChecks();bindSort();
- const s=document.getElementById("syncNow");if(s)s.onclick=async()=>{toast("Menyinkronkan...");await doSync();toast(state.sync.pending?"Belum tersinkron. Periksa GAS_URL/koneksi.":"Progress tersinkron.")};
+ const tc=document.getElementById("testConnection");if(tc)tc.onclick=async()=>{const out=document.getElementById("connectionResult");out.textContent="Menguji koneksi...";out.className="feedback";const r=await testConnection();out.textContent=r.success?`✓ Terhubung ke Apps Script${r.spreadsheetName?` • ${r.spreadsheetName}`:""}`:`Gagal: ${r.message||"Tidak diketahui"}`;out.className=`feedback ${r.success?"good":"bad"}`};
+ const s=document.getElementById("syncNow");if(s)s.onclick=async()=>{toast("Menyinkronkan...");const r=await pushProgress(state);if(r?.success){state.sync.pending=false;state.sync.lastSyncedAt=new Date().toISOString();saveState(state);renderSyncOnly();toast("Progress tersinkron.")}else{state.sync.pending=true;saveState(state);toast(`Gagal sinkron: ${r?.message||"periksa Apps Script"}`)}};
  const r=document.getElementById("resetProgress");if(r)r.onclick=()=>{if(confirm("Semua progress pada perangkat ini akan dihapus. Lanjutkan?")){resetState();state=loadState();route="home";render()}};
  const q=document.getElementById("startQuiz");if(q)q.onclick=startQuiz;
 }
