@@ -2,7 +2,7 @@ import { CONFIG } from "./config.js";
 
 const initialState = {
   student:{id:"",name:"",className:"VII A",createdAt:""},
-  modules:{concept:0,conversion:0,numberline:0,comparison:0},
+  modules:{concept:0,conversion:0,comparison:0},
   xp:0,
   badges:[],
   quiz:{bestScore:0,lastScore:0,attempts:0},

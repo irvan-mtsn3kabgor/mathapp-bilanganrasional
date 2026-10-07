@@ -1,94 +1,25 @@
-# Bilangan Rasional Kelas VII - Versi Interaksi Baru
+# Bilangan Rasional Kelas VII v5
 
-Paket ini adalah aplikasi web statis interaktif untuk materi Bilangan Rasional kelas VII. Siap di-host melalui GitHub Pages dan dapat mengirim progress ke Google Sheets melalui Google Apps Script.
+Versi ini memperbaiki interaksi pembelajaran dan menghapus modul garis bilangan sesuai revisi terbaru.
 
-## Fitur versi ini
+## Alur
+1. Kenali Bilangan Rasional
+2. Pecahan, Desimal, dan Persen
+3. Membandingkan dan Mengurutkan
+4. Evaluasi Akhir
 
-- definisi bilangan rasional muncul sebagai teks animatif
-- pecahan ditampilkan besar dan jelas dengan garis pecahan
-- eksplorasi bilangan melalui kartu yang membuka layar/animasi baru
-- konversi desimal, pecahan, dan persen dengan visual kotak
-- pembedaan animasi penyebut 10 dan penyebut 100
-- garis bilangan interaktif menggunakan slider
-- evaluasi 10 soal acak dari 50 bank soal
-- tipe soal: pilihan jawaban, benar-salah, dan memasangkan
-- urutan soal acak setiap percobaan
-- localStorage + sinkronisasi ke Apps Script
+## Perubahan penting
+- ukuran pecahan konsisten dan lebih besar
+- 75/100 dianimasikan dari 100 kotak menjadi 3 dari 4 kelompok, masing-masing kelompok mewakili 25 kotak
+- 25/100 dianimasikan menjadi 1 dari 4 kelompok
+- perkalian pembilang dan penyebut untuk 3/4 → 75/100 muncul di sebelah pecahan
+- Bagian 2 memakai kartu animasi seperti Bagian 1
+- modul garis bilangan dihapus
+- membandingkan dan mengurutkan memakai pictorial satu-bagian-penuh
+- evaluasi 10 soal acak dari 50 bank soal, tanpa soal garis bilangan
 
-## Struktur
+## Google Apps Script
+Gunakan `gas/Code.gs` seperti versi sebelumnya. Jalankan `setupApp()` satu kali, deploy sebagai Web App, lalu isi URL `/exec` pada `js/config.js`.
 
-```text
-index.html
-css/style.css
-js/config.js
-js/storage.js
-js/api.js
-js/app.js
-data/questions.json
-gas/Code.gs
-README.md
-```
-
-## Menjalankan lokal
-
-Gunakan server lokal sederhana, misalnya:
-
-```bash
-python -m http.server 8000
-```
-
-Lalu buka `http://localhost:8000`.
-
-## Setup Google Sheets dan Apps Script
-
-1. Buat Google Sheet baru.
-2. Dari sheet tersebut buka **Extensions > Apps Script**.
-3. Ganti isi script dengan file `gas/Code.gs`.
-4. Jalankan fungsi `setupApp()` satu kali.
-5. Berikan izin akses yang diminta.
-6. Refresh Google Sheets.
-
-Sheet yang akan dibuat otomatis:
-
-- `Students`
-- `Progress`
-- `QuizResults`
-- `ActivityLog`
-
-## Deploy Apps Script
-
-1. Klik **Deploy > New deployment**.
-2. Pilih **Web app**.
-3. `Execute as`: **Me**.
-4. `Who has access`: sesuaikan agar aplikasi dapat mengakses endpoint.
-5. Klik **Deploy**.
-6. Salin URL yang berakhir dengan `/exec`.
-
-## Hubungkan ke aplikasi
-
-Buka `js/config.js`, lalu isi:
-
-```js
-GAS_URL: "https://script.google.com/macros/s/XXXXXXXXXXXX/exec"
-```
-
-## Sinkronisasi
-
-Aplikasi menyimpan progress lebih dulu di `localStorage`, lalu mengirim request ke Apps Script. Pada GitHub Pages, proses simpan memakai mode `no-cors`, jadi verifikasi akhirnya dilakukan dengan melihat data pada Google Sheets.
-
-## Upload ke GitHub Pages
-
-1. Upload seluruh isi folder ini ke repository GitHub.
-2. Buka **Settings > Pages**.
-3. Pilih **Deploy from a branch**.
-4. Pilih branch `main` dan folder `/ (root)`.
-5. Simpan.
-
-## Edit bank soal
-
-Edit file `data/questions.json`. Versi ini berisi 50 soal.
-
-## Catatan
-
-- Untuk pecahan di teks soal, file JSON menggunakan token seperti `[[3/4]]`, lalu dirender sebagai pecahan vertikal oleh aplikasi.
-- Untuk mengecek sinkronisasi, lihat sheet `ActivityLog` setelah menekan tombol **Sinkronkan Sekarang**.
+## GitHub Pages
+Upload seluruh isi folder ke root repository, kemudian aktifkan GitHub Pages dari branch `main`.
