@@ -1,41 +1,51 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#17345f" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16395f">
   <title>Bilangan Rasional Kelas VII</title>
-  <meta name="description" content="Aplikasi pembelajaran interaktif Bilangan Rasional untuk SMP/MTs Kelas VII." />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="topbar">
-    <button class="brand" data-route="home" aria-label="Kembali ke beranda">
+    <button class="brand" data-route="home" aria-label="Beranda aplikasi">
       <span class="brand-icon">📘</span>
-      <span><b>MATEMATIKA KELAS VII</b><small>Bilangan Rasional</small></span>
+      <span>
+        <strong>MATEMATIKA KELAS VII</strong>
+        <small>Bilangan Rasional</small>
+      </span>
     </button>
-    <div class="top-progress" aria-label="Progress belajar">
+    <div class="top-progress">
       <div class="progress-track"><div id="globalProgressBar" class="progress-fill"></div></div>
-      <small id="globalProgressText">0%</small>
+      <span id="globalProgressText">0%</span>
     </div>
     <div class="top-actions">
-      <span class="xp-chip">⭐ <b id="xpValue">0</b> XP</span>
-      <button id="soundBtn" class="icon-btn" aria-label="Aktif/nonaktifkan suara">🔇</button>
+      <span class="chip">⭐ <b id="xpValue">0</b> XP</span>
+      <button id="soundBtn" class="icon-btn" aria-label="Suara">🔇</button>
       <button id="fullscreenBtn" class="icon-btn" aria-label="Layar penuh">⛶</button>
     </div>
   </header>
 
-  <main id="app" class="app-shell" tabindex="-1"></main>
+  <main id="app" class="app"></main>
 
-  <nav class="bottom-nav" aria-label="Navigasi utama">
+  <nav class="bottom-nav">
     <button data-route="home">🏠<span>Beranda</span></button>
     <button data-route="learn">📖<span>Belajar</span></button>
-    <button data-route="quiz">🎯<span>Misi</span></button>
+    <button data-route="quiz">🎯<span>Evaluasi</span></button>
     <button data-route="progress">🏅<span>Progress</span></button>
   </nav>
+
+  <div id="modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <h2 id="modalTitle">Eksplorasi</h2>
+        <button class="icon-btn" data-close-modal aria-label="Tutup">✕</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="confetti" class="confetti-layer" aria-hidden="true"></div>
