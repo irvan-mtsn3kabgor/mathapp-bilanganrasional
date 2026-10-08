@@ -27,7 +27,7 @@ const exploreMap={
  ]},
  fraction34:{title:'Pecahan Biasa',stages:[
   {kind:'html',html:`<div class="math-stage reveal-number"><p>Pecahan yang dipilih adalah:</p><div class="math-box">${fraction(3,4,'big')}</div></div>`},
-  {kind:'whole-labeled',parts:4,fill:3,unit:`${fraction(1,4)}`,label:`Satu bagian penuh dibagi menjadi 4 bagian sama besar. Setiap bagian bernilai ${fraction(1,4)}. Tiga bagian berubah warna dari kiri.`},
+  {kind:'whole-labeled',parts:4,fill:3,unit:`${fraction(1,4)}`,label:`Satu bagian penuh dibagi menjadi 4 bagian sama besar. Setiap bagian bernilai ${fraction(1,4)}. Tiga bagian berubah warna menunjukkan pecahan ${fraction(3,4)}`},
   {kind:'typed-multiply',n:3,d:4,m:25,rn:75,rd:100},
   {kind:'html',html:`<div class="math-stage"><p>Pecahan senilainya adalah:</p><div class="math-box">${fraction(75,100,'huge')}</div></div><div class="hint">Nilai ${fraction(3,4)} dan ${fraction(75,100)} sama.</div>`}
  ]},
