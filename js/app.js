@@ -23,7 +23,7 @@ function equivalentPair(n1,d1,n2,d2){const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);c
 const exploreMap={
  integer3:{title:'Bilangan Bulat',stages:[
   {kind:'html',html:`<div class="math-stage reveal-number"><p>Bilangan yang dipilih adalah:</p><div class="math-box concept-number">3</div></div>`},
-  {kind:'html',html:`<div class="math-row"><div class="math-box concept-number">3</div><span class="math-symbol">=</span><div class="math-box">${fraction(3,1,'big')}</div></div><div class="hint">Cukup tulis bilangan bulat sebagai pecahan berpenyebut 1. Tidak diperlukan gambar pecahan.</div>`}
+  {kind:'html',html:`<div class="math-row"><div class="math-box concept-number">3</div><span class="math-symbol">=</span><div class="math-box">${fraction(3,1,'big')}</div></div><div class="hint">Bilangan bulat dapat dinyatakan dalam bentuk a/b, dengan penyebut 1</div>`}
  ]},
  fraction34:{title:'Pecahan Biasa',stages:[
   {kind:'html',html:`<div class="math-stage reveal-number"><p>Pecahan yang dipilih adalah:</p><div class="math-box">${fraction(3,4,'big')}</div></div>`},
