@@ -1,28 +1,17 @@
-# Bilangan Rasional Kelas VII v6
+# Bilangan Rasional Kelas VII - v7
 
-Versi ini menyempurnakan interaksi visual berdasarkan revisi terbaru.
+Perbaikan v7:
 
-## Perubahan utama
-- contoh pada Bagian 1 menggunakan ukuran huruf/angka yang konsisten
-- kartu eksplorasi hanya menampilkan nama konsep; angka muncul setelah kartu ditekan
-- eksplorasi Bagian 1: Bilangan Bulat, Pecahan Biasa, Pecahan Campuran, Desimal Berhenti, dan Desimal Berulang
-- pecahan biasa divisualisasikan sebagai satu bentuk penuh yang dibagi sama besar dan setiap bagian diberi label nilai pecahannya
-- contoh 3/4 menampilkan satu penuh dibagi empat; setiap bagian berlabel 1/4; tiga bagian diwarnai bertahap
-- perubahan 3/4 × 25/25 = 75/100 muncul bertahap dengan ukuran pecahan yang sama
-- persen menggunakan 100 kotak dalam empat blok masing-masing 25 kotak; blok berubah warna dari kiri ke kanan
-- Bagian 2 juga menggunakan pola kartu label dahulu, angka dan visual baru muncul setelah kartu ditekan
-- penyebut 10 memakai satu bentuk penuh dibagi 10, setiap bagian berlabel 1/10, kemudian bagian sesuai nilai diwarnai
-- penyebut 100 memakai satu bentuk penuh dibagi 100, setiap kotak berlabel 1/100, kemudian bagian sesuai nilai diwarnai
-- Google Apps Script dan struktur progress tetap kompatibel dengan versi sebelumnya
-
-## Alur aplikasi
-1. Kenali Bilangan Rasional
-2. Pecahan, Desimal, dan Persen
-3. Membandingkan dan Mengurutkan
-4. Evaluasi Akhir
+- Bilangan bulat langsung ke bentuk pecahan, tanpa pictorial.
+- Pecahan biasa: fraction bar → perkalian 25/25 type-in → 75/100.
+- Pecahan campuran memberi label “1 bagian penuh” pada bar penuh.
+- Desimal berhenti: 0,6 → 6/10 karena satu angka di belakang koma → fraction bar → 3/5 → fraction bar senilai.
+- Desimal berulang menggunakan animasi proses pembagian yang menghasilkan angka berulang, tanpa pictorial tambahan.
+- Pecahan biasa ke desimal memakai kisi 100 kotak yang dibagi 4 blok 5×5 dan diwarnai kiri atas, kanan atas, lalu kiri bawah.
+- Membandingkan dan mengurutkan memakai fraction bar vertikal interaktif yang mengisi dari bawah.
+- Pengguna dapat mengubah pembilang dan penyebut.
+- Tombol pecahan senilai menyamakan penyebut dua pecahan yang dibandingkan.
+- Evaluasi tetap 10 soal acak dari 50 bank soal.
 
 ## Google Apps Script
-Gunakan `gas/Code.gs`. Jalankan `setupApp()` satu kali, deploy sebagai Web App, lalu isi URL `/exec` pada `js/config.js`.
-
-## GitHub Pages
-Upload seluruh isi folder ke root repository dan aktifkan GitHub Pages dari branch `main`.
+Gunakan `gas/Code.gs` dan isi URL `/exec` pada `js/config.js` seperti versi sebelumnya.
