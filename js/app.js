@@ -34,7 +34,7 @@ const exploreMap={
  mixed12:{title:'Pecahan Campuran',stages:[
   {kind:'html',html:`<div class="math-stage reveal-number"><p>Pecahan campuran yang dipilih adalah:</p><div class="math-box mixed-number"><span class="whole-num">1</span>${fraction(1,2,'big')}</div></div>`},
   {kind:'mixed-visual',label:`Pecahan campuran terdiri dari 1 bagian penuh dan ${fraction(1,2)} bagian berikutnya.`},
-  {kind:'html',html:`<div class="math-row"><div class="math-box mixed-number"><span class="whole-num">1</span>${fraction(1,2,'big')}</div><span class="math-symbol">=</span><div class="math-box">${fraction(3,2,'big')}</div></div><div class="hint">Satu penuh sama dengan ${fraction(2,2)}. Ditambah ${fraction(1,2)} menjadi ${fraction(3,2)}.</div>`}
+  {kind:'html',html:`<div class="math-row"><div class="math-box mixed-number"><span class="whole-num">1</span>${fraction(1,2,'big')}</div><span class="math-symbol">=</span><div class="math-box">${fraction(3,2,'big')}</div></div><div class="hint">Satu bagian penuh sama dengan ${fraction(2,2)}. Ditambah ${fraction(1,2)} dalam bentuk pecahan biasa menjadi ${fraction(3,2)}.</div>`}
  ]},
  terminating06:{title:'Desimal Berhenti',stages:[
   {kind:'html',html:`<div class="math-stage reveal-number"><p>Desimal berhenti yang dipilih adalah:</p><div class="math-box concept-number">0,6</div></div>`},
