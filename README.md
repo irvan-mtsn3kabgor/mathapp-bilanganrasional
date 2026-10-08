@@ -15,3 +15,11 @@ Perbaikan v7:
 
 ## Google Apps Script
 Gunakan `gas/Code.gs` dan isi URL `/exec` pada `js/config.js` seperti versi sebelumnya.
+
+
+## Perbaikan v8
+
+- Tinggi fraction bar vertikal dihitung langsung dari nilai pembilang/penyebut, sehingga pecahan senilai seperti 2/5 dan 4/10 memiliki tinggi warna yang sama persis.
+- Fraction bar kiri dan kanan menggunakan warna berbeda.
+- Bentuk fraction bar tidak rounded.
+- Label setiap bagian menyesuaikan ukuran layar desktop dan mobile.
