@@ -74,3 +74,58 @@ label{display:block;font-weight:800;margin:10px 0 6px} input,select{width:100%;b
 
 /* Stable SVG icons: avoid OS/browser emoji substitutions */
 .ui-icon{width:22px;height:22px;display:inline-block;vertical-align:middle;flex:0 0 auto}.ui-icon-lg{width:32px;height:32px}.nav-icon{width:24px;height:24px;display:block}.module-icon{width:30px;height:30px;display:inline-block;vertical-align:middle;margin-right:7px}.heading-icon{width:28px;height:28px;vertical-align:middle;margin-right:7px}.icon-heading{display:flex;align-items:center;gap:4px}.brand-icon{display:grid;place-items:center}.chip{display:inline-flex;align-items:center;gap:5px}.badge-item{display:flex;align-items:center;gap:10px}.bottom-nav button img{pointer-events:none}
+
+
+/* v8.3: label fraction bar vertikal tetap terbaca saat penyebut besar */
+.vf-bar{
+  height:max(340px,calc(var(--group-parts, 6) * 38px));
+  transition:height .3s ease;
+}
+.vertical-order .vf-bar{
+  height:max(300px,calc(var(--group-parts, 6) * 36px));
+}
+.vf-segment{
+  overflow:visible;
+  position:relative;
+}
+.vf-unit-label{
+  display:grid !important;
+  place-items:center;
+  width:auto !important;
+  height:auto !important;
+  min-width:30px;
+  max-width:82%;
+  padding:2px 5px !important;
+  margin:auto;
+  background:rgba(255,255,255,.94);
+  border:1px solid rgba(22,57,95,.24);
+  box-shadow:0 1px 3px rgba(22,57,95,.10);
+  color:#102f48;
+  line-height:1;
+  z-index:3;
+}
+.vf-unit-label .fraction{
+  font-size:clamp(.7rem,1.05vw,.92rem) !important;
+  min-width:1.55em !important;
+  color:#102f48;
+}
+.vf-unit-label .fraction .numerator,
+.vf-unit-label .fraction .denominator{
+  padding:.04em .14em !important;
+}
+.vf-unit-label .fraction .fraction-line{
+  height:2px !important;
+  background:#102f48;
+}
+@media(max-width:860px){
+  .vf-bar{height:max(300px,calc(var(--group-parts, 6) * 35px));}
+  .vertical-order .vf-bar{height:max(270px,calc(var(--group-parts, 6) * 33px));}
+  .vf-unit-label{min-width:27px;padding:2px 4px !important;max-width:88%;}
+  .vf-unit-label .fraction{font-size:clamp(.66rem,2.4vw,.82rem) !important;}
+}
+@media(max-width:420px){
+  .vf-bar{height:max(290px,calc(var(--group-parts, 6) * 34px));}
+  .vertical-order .vf-bar{height:max(260px,calc(var(--group-parts, 6) * 32px));}
+  .vf-unit-label{min-width:25px;padding:1px 3px !important;}
+  .vf-unit-label .fraction{font-size:clamp(.62rem,2.7vw,.76rem) !important;}
+}
