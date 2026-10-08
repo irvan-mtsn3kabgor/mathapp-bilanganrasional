@@ -118,22 +118,26 @@ function bindConcept(){const valid=new Set(['integer3','fraction34','mixed12','t
 function bindConversion(){let seen=new Set(state.__seenConversion||[]);document.querySelectorAll('[data-conversion]').forEach(b=>b.onclick=()=>{openExplore(conversionCards,b.dataset.conversion);seen.add(b.dataset.conversion);state.__seenConversion=[...seen];state.modules.conversion=Math.max(state.modules.conversion||0,25+seen.size*15);addXP(4);persist(false);const e=document.getElementById('conversionProgress');if(e)e.textContent=`${seen.size} dari 4 kartu animasi sudah dibuka.`});document.getElementById('completeConversion').onclick=()=>completeModule('conversion')}
 function bindComparison(){
  const pairs=['leftFrac','rightFrac','ord1','ord2','ord3','ord4'];
- pairs.forEach(id=>{const n=document.getElementById(id+'N'),d=document.getElementById(id+'D');if(n)n.oninput=()=>updateVerticalBar(id);if(d)d.oninput=()=>updateVerticalBar(id);updateVerticalBar(id)});
+ pairs.forEach(id=>{const n=document.getElementById(id+'N'),d=document.getElementById(id+'D');if(n)n.oninput=()=>updateVerticalBar(id);if(d)d.oninput=()=>updateVerticalBar(id);updateVerticalBar(id)}); syncFractionBarHeights(['leftFrac','rightFrac']); syncFractionBarHeights(['ord1','ord2','ord3','ord4']);
  const compare=()=>{const a=getFrac('leftFrac'),b=getFrac('rightFrac');const av=a.n/a.d,bv=b.n/b.d;document.getElementById('compareSymbol').textContent=Math.abs(av-bv)<1e-9?'=':av<bv?'<':'>';};
- ['leftFracN','leftFracD','rightFracN','rightFracD'].forEach(inputId=>{const el=document.getElementById(inputId);if(el)el.addEventListener('input',()=>{const base=inputId.replace(/[ND]$/,'');updateVerticalBar(base);compare();})});compare();
+ ['leftFracN','leftFracD','rightFracN','rightFracD'].forEach(inputId=>{const el=document.getElementById(inputId);if(el)el.addEventListener('input',()=>{const base=inputId.replace(/[ND]$/,'');updateVerticalBar(base);syncFractionBarHeights(['leftFrac','rightFrac']);compare();})});compare();
  document.getElementById('showEquivalent').onclick=()=>{const a=getFrac('leftFrac'),b=getFrac('rightFrac'),eq=equivalentPair(a.n,a.d,b.n,b.d);document.getElementById('equivalentResult').innerHTML=`<div class="equiv-pop"><b>Penyebut sama: ${eq.l}</b><div class="math-row"><div class="math-box">${fraction(eq.a,eq.l,'big')}</div><span class="math-symbol">${eq.a===eq.b?'=':eq.a<eq.b?'<':'>'}</span><div class="math-box">${fraction(eq.b,eq.l,'big')}</div></div><small>${fraction(a.n,a.d)} = ${fraction(eq.a,eq.l)} &nbsp; dan &nbsp; ${fraction(b.n,b.d)} = ${fraction(eq.b,eq.l)}</small></div>`;};
- ['ord1N','ord1D','ord2N','ord2D','ord3N','ord3D','ord4N','ord4D'].forEach(inputId=>{const el=document.getElementById(inputId);if(el)el.addEventListener('input',()=>updateVerticalBar(inputId.replace(/[ND]$/,'')))});
+ ['ord1N','ord1D','ord2N','ord2D','ord3N','ord3D','ord4N','ord4D'].forEach(inputId=>{const el=document.getElementById(inputId);if(el)el.addEventListener('input',()=>{updateVerticalBar(inputId.replace(/[ND]$/,''));syncFractionBarHeights(['ord1','ord2','ord3','ord4']);})});
  document.getElementById('sortFractions').onclick=()=>{const ids=['ord1','ord2','ord3','ord4'];const arr=ids.map((id,i)=>({...getFrac(id),label:String.fromCharCode(65+i)})).sort((x,y)=>x.n/x.d-y.n/y.d);document.getElementById('sortFractionsResult').innerHTML='Urutan: '+arr.map(x=>`${x.label} = ${fraction(x.n,x.d)}`).join(' &lt; ');document.getElementById('sortFractionsResult').className='feedback good';state.modules.comparison=Math.max(state.modules.comparison||0,80);addXP(10);persist(false)};
  document.getElementById('completeComparison').onclick=()=>completeModule('comparison');
 }
 function getFrac(id){let n=Math.max(0,Number(document.getElementById(id+'N')?.value||0)),d=Math.max(1,Number(document.getElementById(id+'D')?.value||1));if(n>d)n=d;return {n,d}}
+function syncFractionBarHeights(ids){
+ const maxParts=Math.max(...ids.map(id=>Math.max(1,Math.min(12,getFrac(id).d))));
+ ids.forEach(id=>{const bar=document.getElementById(id+'Bar');if(bar)bar.style.setProperty('--group-parts',maxParts)});
+}
 function updateVerticalBar(id){
  const raw=getFrac(id),d=Math.max(1,Math.min(12,Number(raw.d)||1)),n=Math.max(0,Math.min(12,Number(raw.n)||0)),shownN=Math.min(n,d),bar=document.getElementById(id+'Bar'),val=document.getElementById(id+'Value');
  if(!bar||!val)return;
  val.innerHTML=fraction(n,d,'big');
  const percent=Math.max(0,Math.min(100,(n/d)*100));
  bar.style.setProperty('--fill-percent',`${percent}%`);
- bar.innerHTML=`<div class="vf-fill-layer"></div><div class="vf-segments">${Array.from({length:d},()=>`<div class="vf-segment"><span>${fraction(1,d)}</span></div>`).join('')}</div>`;
+ bar.innerHTML=`<div class="vf-fill-layer"></div><div class="vf-segments">${Array.from({length:d},()=>`<div class="vf-segment"><span class="vf-unit-label">${fraction(1,d)}</span></div>`).join('')}</div>`;
 }
 
 function bindProgress(){document.getElementById('testConnection').onclick=async()=>{const out=document.getElementById('connectionResult');out.textContent='Menguji koneksi...';const r=await testConnection();out.textContent=r.success?`✓ Terhubung${r.spreadsheetName?' • '+r.spreadsheetName:''}`:`Gagal: ${r.message}`;out.className=`feedback ${r.success?'good':'bad'}`};document.getElementById('syncNow').onclick=async()=>{toast('Mengirim request sinkronisasi...');const r=await pushProgress(state);toast(r.success?'Request sinkronisasi telah dikirim.':'Gagal mengirim request.')};document.getElementById('resetProgressBtn').onclick=()=>{if(confirm('Hapus seluruh progress pada perangkat ini?')){resetState();state=cloneState();route='home';render()}}}
